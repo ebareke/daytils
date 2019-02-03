@@ -1,2 +1,1 @@
-# Bionformatics companion scripts
-Day-t-day computational utilities
+# This repo contains some of my companion scripts developped during my bioinfo career
