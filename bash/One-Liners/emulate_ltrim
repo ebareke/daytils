@@ -1,3 +1,6 @@
 #!/bin/bash
 #
+# equivalent to sed 's/^[ \t]*//'
+# equivalent to sed 's/[ \t]*$//'
+#
 awk '{ sub(/^[ \t]+/, ""); print }' "$@"
