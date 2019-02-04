@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# emulate tail -n+2 or tail -1
+#
+awk 'END { print }' "$@"
