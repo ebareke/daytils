@@ -1,3 +1,9 @@
 #!/bin/bash
 #
+# equivalent to sed "s/$/`echo -e \\\r`/"
+# equivalent to sed sed 's/$/\r/' (assumes GNU sed)
+# equivalent to sed sed "s/$//"
+# equivalent to sed sed -n p
+# equivalent to sed sed ''
+#
 awk '{ sub(/$/,"\r"); print }'"$@"
