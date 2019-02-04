@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# also similar to awk '/./' "$@"
+#
+awk NF "$@"
