@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# emulates <grep '.'>
+# equivalent to sed '/./!d'
+#
+sed '/^$/d' "$@"
