@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# emulate head -1
+#
+awk 'NR > 1 { exit }; 1' "$@"
