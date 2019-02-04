@@ -1,3 +1,6 @@
 #!/bin/bash
 #
+# equivalent to sed '1!G;h;$!d'
+# equivalent to sed -n '1!G;h;$p'
+#
 awk '{ a[i++] = $0 } END { for (j=i-1; j>=0;) print a[j--] }' "$@"
