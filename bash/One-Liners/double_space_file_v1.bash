@@ -1,3 +1,3 @@
 #!/bin/bash
 #
-awk '1; { print "" }' "$@" 
+awk '1; { print "" }' "$@"
