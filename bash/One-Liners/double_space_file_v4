@@ -1,3 +1,5 @@
 #!/bin/bash
 #
+# equivalent to sed '/^$/d;G' ?
+#
 awk 'BEGIN { ORS="\n\n" }; 1' "$@"
