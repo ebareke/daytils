@@ -1,3 +1,5 @@
 #!/bin/bash
 #
+# equivalent to sed '/./=' $0 | sed '/./N; s/\n/ /'
+#
 awk 'NF { $0=++a " :" $0 }; { print }'
