@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# emulates <cat -s>
+# equivalent to sed '/^$/N;/\n$/D'
+#
+sed '/./,/^$/!d' "$@"
