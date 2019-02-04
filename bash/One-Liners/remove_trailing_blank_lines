@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# Portable version : gsed -e :a -e '/^\n*$/N;/\n$/ba'
+#
+sed -e :a -e '/^\n*$/{$d;N;ba' -e '}' "$@"
