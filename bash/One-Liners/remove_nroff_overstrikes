@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# equivalent to sed 's/.\x08//g'
+# equivalent to sed 's/.'`echo -e "\b"`'//g'
+#
+sed 's/.^H//g' "$@"
