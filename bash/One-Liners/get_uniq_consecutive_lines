@@ -1,3 +1,5 @@
 #!/bin/bash
 #
+# equivalent to sed '$!N; /^\(.*\)\n\1$/!P; D'
+#
 awk 'a != $0; { a = $0 }' "$@"
