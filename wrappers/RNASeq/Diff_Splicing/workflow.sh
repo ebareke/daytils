@@ -1,13 +1,4 @@
 #!/bin/sh
-#SBATCH -N 1 #Number of nodes
-#SBATCH -n 12 # number of cores
-#SBATCH --mem 48G # memory pool for all cores
-#SBATCH -t 03-12:00 # time (D-HH:MM)
-#SBATCH -o mRNA-IKAROS.%N.%j.out
-#SBATCH -e mRNA-IKAROS.%N.%j.err
-#SBATCH --mail-type=END,FAIL
-#SBATCH --account=rrg-majewski-ab
-#SBATCH --mail-user=erm.ba@yandex.com
 #
 ### Global variables
 #
@@ -230,12 +221,20 @@ grep -P -w "NDA|A|D" ${RNA_ALIGN_DIR}/WT.junctions.anno.bed | perl -ne 'chomp; @
 grep -P -w "NDA|A|D" ${RNA_ALIGN_DIR}/IK.junctions.anno.bed | perl -ne 'chomp; @l=split("\t",$_); if ($l[4] > 5){print "$_\n"}' > IK.splice.events.txt
 #
 #### Organize illustrative GTF files ####
+## Should add variable handling in arguments ## TODO
 cd ${RNA_EXPRESSION_DIR}/stringtie/ref_only/
-stringtie_filter_gtf.pl --expression_metric=FPKM --result_dirs='WT1-OP9,WT3-OP9,WT3-OP9,IK1-OP9,IK2-OP9,IK3-OP9' --input_gtf_file='${RNA_REF_GTF}' --filtered_gtf_file='${RNA_EXPRESSION_DIR}/stringtie/ref_only/stringtie_merged.filtered.gtf' --exp_cutoff=0 --min_sample_count=2
+stringtie_filter_gtf.pl --expression_metric=FPKM --result_dirs='./WT1-OP9,./WT3-OP9,./WT4-OP9,./IK1-OP9,./IK2-OP9,./IK3-OP9' --input_gtf_file='/project/6007495/singularity/1.1.0/builtin/genomes/Mmusculus/mm10/rnaseq/ref-transcripts.gtf' --filtered_gtf_file='../ref_only/stringtie_merged.filtered.gtf' --exp_cutoff=0 --min_sample_count=2
 #
 cd ${RNA_EXPRESSION_DIR}/stringtie/ref_guided_merged/
-stringtie_filter_gtf.pl --expression_metric=FPKM --result_dirs='WT1-OP9,WT3-OP9,WT3-OP9,IK1-OP9,IK2-OP9,IK3-OP9' --input_gtf_file='${RNA_EXPRESSION_DIR}/stringtie/ref_guided/stringtie_merged.gtf' --filtered_gtf_file='${RNA_EXPRESSION_DIR}/stringtie/ref_guided/stringtie_merged.filtered.gtf' --exp_cutoff=0 --min_sample_count=2
+stringtie_filter_gtf.pl --expression_metric=FPKM --result_dirs='./WT1-OP9,./WT3-OP9,./WT4-OP9,./IK1-OP9,./IK2-OP9,./IK3-OP9' --input_gtf_file='../ref_guided/stringtie_merged.gtf' --filtered_gtf_file='../ref_guided/stringtie_merged.filtered.gtf' --exp_cutoff=0 --min_sample_count=2
 #
+##### Organize illustrative GTF files ####
+#cd ${RNA_EXPRESSION_DIR}/stringtie/ref_only/
+#stringtie_filter_gtf.pl --expression_metric=FPKM --result_dirs='WT1-OP9,WT3-OP9,WT3-OP9,IK1-OP9,IK2-OP9,IK3-OP9' --input_gtf_file='${RNA_REF_GTF}' --filtered_gtf_file='${RNA_EXPRESSION_DIR}/stringtie/ref_only/stringtie_merged.filtered.gtf' --exp_cutoff=0 --min_sample_count=2
+##
+#cd ${RNA_EXPRESSION_DIR}/stringtie/ref_guided_merged/
+#stringtie_filter_gtf.pl --expression_metric=FPKM --result_dirs='WT1-OP9,WT3-OP9,WT3-OP9,IK1-OP9,IK2-OP9,IK3-OP9' --input_gtf_file='${RNA_EXPRESSION_DIR}/stringtie/ref_guided/stringtie_merged.gtf' --filtered_gtf_file='${RNA_EXPRESSION_DIR}/stringtie/ref_guided/stringtie_merged.filtered.gtf' --exp_cutoff=0 --min_sample_count=2
+##
 ## Rename the GTF files for visualization ###
 #
 mkdir -p ${RNA_EXPRESSION_DIR}/stringtie/visualization/
